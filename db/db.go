@@ -94,7 +94,7 @@ func formatFamilyAndOSVer(family, osVer string) (string, string, error) {
 		if osVer != "tumbleweed" {
 			osVer = majorDotMinor(osVer)
 		}
-	case c.OpenSUSELeap, c.SUSEEnterpriseDesktop, c.SUSEEnterpriseServer:
+	case c.OpenSUSELeap, c.SUSEEnterpriseDesktop, c.SUSEEnterpriseServer, c.SUSEEnterprise:
 		osVer = majorDotMinor(osVer)
 	default:
 		return "", "", xerrors.Errorf("Failed to detect family. err: unknown os family(%s)", family)
