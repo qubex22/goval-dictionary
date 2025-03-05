@@ -333,7 +333,7 @@ func (r *RedisDriver) InsertOval(root *models.Root) (err error) {
 			}
 		}
 	case c.Alpine:
-	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseServer, c.SUSEEnterpriseDesktop:
+	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseServer, c.SUSEEnterpriseDesktop, c.SUSEEnterprise:
 		for _, d := range root.Definitions {
 			cves := make([]string, 0, len(d.Advisory.Cves))
 			for _, cve := range d.Advisory.Cves {
