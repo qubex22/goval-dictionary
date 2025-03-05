@@ -28,13 +28,14 @@ var fetchSUSECmd = &cobra.Command{
 	Example: `$ goval-dictionary fetch suse --suse-type opensuse 13.2 tumbleweed
 $ goval-dictionary fetch suse --suse-type opensuse-leap 15.2 15.3
 $ goval-dictionary fetch suse --suse-type suse-enterprise-server 12 15
-$ goval-dictionary fetch suse --suse-type suse-enterprise-desktop 12 15`,
+$ goval-dictionary fetch suse --suse-type suse-enterprise-desktop 12 15
+$ goval-dictionary fetch suse --suse-type suse-enterprise 15-sp4-affected`,
 }
 
 func init() {
 	fetchCmd.AddCommand(fetchSUSECmd)
 
-	fetchSUSECmd.PersistentFlags().String("suse-type", "opensuse-leap", "Fetch SUSE Type(choices: opensuse, opensuse-leap, suse-enterprise-server, suse-enterprise-desktop)")
+	fetchSUSECmd.PersistentFlags().String("suse-type", "opensuse-leap", "Fetch SUSE Type(choices: opensuse, opensuse-leap, suse-enterprise-server, suse-enterprise-desktop, suse-enterprise)")
 	_ = viper.BindPFlag("suse-type", fetchSUSECmd.PersistentFlags().Lookup("suse-type"))
 }
 
@@ -53,8 +54,10 @@ func fetchSUSE(_ *cobra.Command, args []string) (err error) {
 		suseType = c.SUSEEnterpriseServer
 	case "suse-enterprise-desktop":
 		suseType = c.SUSEEnterpriseDesktop
+	case "suse-enterprise":
+		suseType = c.SUSEEnterprise
 	default:
-		return xerrors.Errorf("Specify SUSE type to fetch. Available SUSE Type: opensuse, opensuse-leap, suse-enterprise-server, suse-enterprise-desktop")
+		return xerrors.Errorf("Specify SUSE type to fetch. Available SUSE Type: opensuse, opensuse-leap, suse-enterprise-server, suse-enterprise, suse-enterprise-desktop")
 	}
 
 	driver, err := db.NewDB(viper.GetString("dbtype"), viper.GetString("dbpath"), viper.GetBool("debug-sql"), db.Option{})
