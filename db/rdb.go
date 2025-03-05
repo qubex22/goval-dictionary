@@ -383,7 +383,7 @@ func (r *RDBDriver) GetAdvisories(family, osVer string) (map[string][]string, er
 			}
 		}
 		return m, nil
-	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseServer, c.SUSEEnterpriseDesktop:
+	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseServer, c.SUSEEnterpriseDesktop, c.SUSEEnterprise:
 		for _, d := range defs {
 			cves := make([]string, 0, len(d.Advisory.Cves))
 			for _, cve := range d.Advisory.Cves {
