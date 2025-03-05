@@ -233,7 +233,7 @@ func (r *RDBDriver) GetByPackName(family, osVer, packName, arch string) ([]model
 			defs[i].AffectedPacks = filterByRedHatMajor(defs[i].AffectedPacks, major(osVer))
 		}
 		return defs, nil
-	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseDesktop, c.SUSEEnterpriseServer:
+	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseDesktop, c.SUSEEnterpriseServer, c.SUSEEnterprise:
 		m := map[string]models.Definition{}
 		for _, d := range defs {
 			m[d.DefinitionID] = d
@@ -288,7 +288,7 @@ func (r *RDBDriver) GetByCveID(family, osVer, cveID, arch string) ([]models.Defi
 			defs[i].AffectedPacks = filterByRedHatMajor(defs[i].AffectedPacks, major(osVer))
 		}
 		return defs, nil
-	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseDesktop, c.SUSEEnterpriseServer:
+	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseDesktop, c.SUSEEnterpriseServer, c.SUSEEnterprise:
 		m := map[string]models.Definition{}
 		for _, d := range defs {
 			m[d.DefinitionID] = d
@@ -325,7 +325,7 @@ func (r *RDBDriver) GetAdvisories(family, osVer string) (map[string][]string, er
 	case c.Amazon, c.Fedora:
 	case c.Alpine:
 		return nil, nil
-	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseServer, c.SUSEEnterpriseDesktop:
+	case c.OpenSUSE, c.OpenSUSELeap, c.SUSEEnterpriseServer, c.SUSEEnterpriseDesktop, c.SUSEEnterprise:
 		q = q.Preload("References", "source = ?", "SUSE-SU")
 	default:
 		return nil, nil
