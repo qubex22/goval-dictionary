@@ -85,6 +85,9 @@ const (
 	// SUSEEnterpriseServer is
 	SUSEEnterpriseServer = "suse.linux.enterprise.server"
 
+	// SUSEEnterpriseServer is
+	SUSEEnterprise = "suse.linux.enterprise"
+	
 	// SUSEEnterpriseDesktop is
 	SUSEEnterpriseDesktop = "suse.linux.enterprise.desktop"
 
